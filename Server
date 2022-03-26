@@ -1,0 +1,29 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp25
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            UdpClient udpClient = new UdpClient();
+            Console.WriteLine("Działa");
+            while (true)
+            {
+                IPEndPoint endpoint = new IPEndPoint(IPAddress.Any, 0);
+
+                Byte[] odebranebyte = udpClient.Receive(ref endpoint);
+
+                string odebranyTekst = Encoding.ASCII.GetString(odebranebyte);
+                Console.WriteLine("Otrzymaja wiadomosc" + odebranyTekst);
+            }
+            
+        }
+    }
+}
